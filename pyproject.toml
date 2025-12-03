@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cometusb"
+version = "1.0.0"
+description = "Create Linux bootable USB from CLI"
+readme = "README.md"
+authors = [
+    { name="Shahid Rahaman", email="shahidrahman333@gmail.com" }
+]
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+
+dependencies = [
+    "requests",
+    "tqdm",
+    "tabulate"
+]
+
+[project.scripts]
+cometusb = "cometusb.cometusb:main"
