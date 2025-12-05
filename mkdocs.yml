@@ -1,0 +1,34 @@
+site_name: CometUSB
+site_description: Python package for Linux distributions to create bootable USB.
+site_url: https://thesniper333.github.io/CometUSB/
+
+theme:
+  name: material
+  palette:
+    scheme: default
+  features:
+    - navigation.instant
+    - navigation.top
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - CLI Reference: cli.md
+  - Internals: internals.md
+  - API Reference: api.md
+  - Troubleshooting: troubleshooting.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.highlight
+  - toc:
+      permalink: true
