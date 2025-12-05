@@ -51,7 +51,7 @@ class Operating_System():
     @name.setter
     def name(self, name: str) -> None:
         """
-        Docstring for name
+        Sets name of the Operating System.
         
         :param name: Name of the Operating System.
         :type name: str
@@ -382,7 +382,7 @@ def mount_usb(partitions: dict) -> None:
 
 def downloader(url: str, download_dir: str) -> None:
     """
-    Downloads all the files from github release page of the CometUSB of the corresponding operating system.
+    Downloads all the files from github release page of the corresponding operating system of the CometUSB organization.
     
     :param url: Download URL of individual files.
     :type url: str

@@ -1,17 +1,45 @@
-# Welcome to MkDocs
+# CometUSB
+##### _Python package for Linux distributions to create bootable USB._
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Description
+This is a python package exclusively for linux distributions. It has list of linux distributions you can choose to create the bootable media. In the corresponding release section you will find the installation files of several linux distributions. 
+<br>
+_Note: Minimum 8GB of Disk required to proceed_
 
-## Commands
+## Installation
+```bash
+pip install cometusb
+or
+python -m pip install cometusb
+or
+python3 -m pip install cometusb
+or 
+apt install python3-cometusb 
+```
+_If none of the above commands work, find out how to install python package in your system._
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Usage
+`sudo cometusb -o <OS_Name> -b <BIOS_Type>`
+<br>
+or
+<br>
+`sudo cometusb --operating-system <OS_Name> --bios-type <BIOS_TYPE>`
 
-## Project layout
+_e.g, `sudo cometusb -o linuxmint -b uefi`_
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+_Type `cometusb -h` to see the usage_
+
+---
+## Features
+
+- Create UEFI with GPT and Legacy BIOS with MBR bootable USBs.
+- Dual-partition layout: In case of UEFI system two partitions first small FAT32 for boot then NTFS in rest of the space for other files are created.
+- Single-partition layout: In case of legacy systems only one NTFS partition is created in the entire disk for both boot and installation files.
+- Automatically install GRUB for UEFI or legacy systems.
+- Works with many Linux distros (Ubuntu family, Debian, Fedora, Arch, etc.)
+- Handles `filesystem.squashfs` splitting/merging workflows
+- Only shows removable disk to format which prevents wiping your main HDD/SSD. This avoids significant data loss.
+
+---
+
+
