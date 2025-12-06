@@ -20,3 +20,5 @@ sure you have a working and stable connection.
 This tools downloads the files in the removable disk and do all the operations like extracting, merging the OS image files in the disk itself, so that it does not rely on the host system to store the files. Therefore, before wiping the disk out it a confirmation option will be prompted, there you can see the size of the disk required, make sure you have atleast that much size of disk.
 
 ### 4. Firmware Detection
+
+Sometime Linux bootable USB is not detected by your BIOS, try switching off the secure boot option in your BIOS.

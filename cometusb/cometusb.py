@@ -14,11 +14,19 @@ def main() -> None:
                     prog= "CometUSB.",
                     description="Create linux bootable USB."
                     )
-    parser.add_argument("-l", "--list-os", help="Shows list of the available Operating Systems.")
+    parser.add_argument("-l", "--list-os", action="store_true", help="Shows list of the available Operating Systems.")
     parser.add_argument("-o", "--operating-system", help="Name of the Operating System.")
     parser.add_argument("-b","--bios-type", help="BIOS type (e.g., UEFI or Legacy), check what your TARGET SYSTEM supports.")
     args = parser.parse_args()
 
+    # List of available Opereating System
+    OS = ["linuxmint"]
+
+    # Shows list of available Operating Systems.
+    if args.list_os:
+        for number in range(len(OS)):
+            print(number + 1, OS[number], sep=". ")
+        sys.exit() # Exits after showing the OS list
     operating_system = Operating_System(args.operating_system.lower(), args.bios_type.lower())
     print(operating_system)
     operating_system.create()
@@ -309,10 +317,10 @@ def format_disk(disk: str, bios_type: str, size: int) -> str:
         if bios_type == "uefi":
             # Create new partition table and partition
             subprocess.run(["sudo", "parted", "-s", disk, "mklabel", "gpt"], check=True)
-            subprocess.run(["sudo", "parted", "-s", disk, "mkpart", "primary", "1MiB", "1001MiB"], check=True)
+            subprocess.run(["sudo", "parted", "-s", disk, "mkpart", "primary", "1MiB", "501MiB"], check=True)
             partition = glob.glob(disk + "?")
             boot_partition = partition[0]
-            subprocess.run(["sudo", "parted", "-s", disk, "mkpart", "primary", "1001MiB", "100%"], check=True)
+            subprocess.run(["sudo", "parted", "-s", disk, "mkpart", "primary", "501MiB", "100%"], check=True)
             partition = glob.glob(disk + "?")
             partition.remove(boot_partition)
             files_partition = partition[0]
