@@ -21,7 +21,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/CometUSB/CometUSB"
-Documentation = "https://thesniper333.github.io/CometUSB/"
+Documentation = "https://CometUSB.github.io/CometUSB/"
 Changelog = "https://github.com/CometUSB/CometUSB/releases"
 
 [project.scripts]
