@@ -1,5 +1,5 @@
 # CLI Reference
-![alt text](cli.png)
+![alt text](img/cli.png)
 ### Required Arguments
 
 | Option | Long Option | Description | Example |
