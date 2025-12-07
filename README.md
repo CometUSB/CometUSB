@@ -62,7 +62,7 @@ _Type `cometusb -h` or `cometusb --help` to see the usage_
 _Type `cometusb --list-os` or `cometusb -l` to see the list of available Operating System_
 
 # CLI Reference
-![alt text](/docs/img/cli.png)
+
 ### Required Arguments
 
 | Option | Long Option | Description | Example |

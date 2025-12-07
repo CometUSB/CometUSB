@@ -28,6 +28,9 @@ def main() -> None:
         for number in range(len(OS)):
             print(number + 1, OS[number], sep=". ")
         sys.exit() # Exits after showing the OS list
+
+    if not (args.operating_system and args.bios_type):
+        sys.exit("Argument missing\nType cometusb -h to see the usage.")
     operating_system = Operating_System(args.operating_system.lower(), args.bios_type.lower())
     print(operating_system)
     operating_system.create()
@@ -266,9 +269,6 @@ def get_disk_details() -> str:
 
     # Parse the JSON output into a Python dictionary
     data = json.loads(result.stdout)
-
-    # Extract and filter the block disks
-
 
     disks = [
                 [
