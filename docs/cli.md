@@ -1,12 +1,15 @@
-## 3. `docs/cli.md`
-This page is the full **Command-Line Interface Reference**, documenting every option available.
-
-[Image of CLI diagram]
-.
-
-```markdown:docs/cli.md
 # CLI Reference
+![alt text](cli.png)
+### Required Arguments
 
-The CometUSB command-line interface is defined by the following arguments:
+| Option | Long Option | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `-o` | `--operating-system` | **Name of the Operating System** to download and install.| `-o linuxmint` |
+| `-b` | `--bios-type` | **BIOS type** (boot mode) for the target system. Specifies the partitioning scheme (GPT/MBR) and GRUB installation method. | `-b uefi` |
 
-## `cometusb`
+### Optional Arguments
+
+| Option | Long Option | Description |
+| :--- | :--- | :--- |
+| `-l` | `--list-os` | Shows a list of the currently available and supported Operating Systems. |
+| `-h` | `--help` | Show the help message and exit. |

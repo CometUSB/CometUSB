@@ -21,8 +21,5 @@ or
 python -m pip install cometusb
 or
 python3 -m pip install cometusb
-or 
-# Installation using the system package manager (if packaged by your distro)
-sudo apt install python3-cometusb
 ```
 _If none of the above commands work, find out how to install python package in your system._

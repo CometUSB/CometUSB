@@ -1,0 +1,10 @@
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+
+# MkDocs Output
+site/

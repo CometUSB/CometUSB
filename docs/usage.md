@@ -8,8 +8,13 @@ You must always specify the Operating System name (`-o`) and the target system's
 
 
 `sudo cometusb -o <OS_NAME> -b <BIOS_TYPE>`
+
+or
+
 `sudo cometusb --operating-system <OS_Name> --bios-type <BIOS_TYPE>`
 
 _e.g, `sudo cometusb -o linuxmint -b uefi`_
 
-_Type `cometusb -h` to see the usage_
+_Type `cometusb -h` or `cometusb --help` to see the usage_
+
+_Type `cometusb --list-os` or `cometusb -l` to see the list of available Operating System_
