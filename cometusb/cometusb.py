@@ -9,6 +9,7 @@ from tqdm import tqdm
 import zipfile as zf
 import os
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
                     prog= "CometUSB.",
@@ -47,20 +48,20 @@ class Operating_System():
         self.disk_partitions = format_disk(self.target_disk, self.bios_type, self.disk_size_reqd) # Dictionary of newly created partitions with labels
         self.files = self.name
         self._architecture= "64 Bit"
-        
+
 
     def __str__(self) -> str:
         return f"\nOS = {self.name.upper()}\nArchitecture = {self._architecture}\nTarget System BIOS Type = {self.bios_type}\nTarget Device = {self.target_disk}\nPartition Style = {self.partition_style.upper()}\nFiles to be Downloaded = {[name for name in self.files.keys()]}\n"
-        
+
     @property
     def name(self) -> str:
         return self._name
-    
+
     @name.setter
     def name(self, name: str) -> None:
         """
         Sets name of the Operating System.
-        
+
         :param name: Name of the Operating System.
         :type name: str
         """
@@ -69,16 +70,16 @@ class Operating_System():
             sys.exit("[!] Invalid or Unsupported Operating System.\nEnter 'cometusb.py --OS-list' without quotes to see the supported list of Operating systems")
 
         self._name: str = name
-    
+
     @property
     def partition_style(self) -> str:
         return self._partition_style
-    
+
     @partition_style.setter
     def partition_style(self, bios_type: str) -> None:
         """
         Sets the partition style i.e, MBR or GPT.
-        
+
         :param bios_type: BIOS firmare type i.e, UEFI or Legacy.
         :type bios_type: str
         """
@@ -88,7 +89,7 @@ class Operating_System():
         else:
             self._partition_style: str = "MBR"
 
-        
+
     @property
     def bios_type(self) -> str:
         return self._bios_type
@@ -96,25 +97,25 @@ class Operating_System():
     def bios_type(self, bios_type: str) -> None:
         """
         Sets the BIOS type.
-        
+
         :param bios_type: BIOS firmare type i.e, UEFI or Legacy.
         :type bios_type: str
         """
         if bios_type in ["uefi", "legacy"]:
             self._bios_type: str = bios_type
-        
+
         else:
             sys.exit("[!] Invalid BIOS type.")
 
     @property
     def files(self) -> dict:
         return self._files
-    
+
     @files.setter
     def files(self, name: str) -> None:
         """
         Selects files of given Operating System for Installation.
-        
+
         :param name: Name of the Operating System.
         :type name: str
         """
@@ -143,7 +144,7 @@ class Operating_System():
     def disk_size_reqd(self, name):
         """
         Calculates the size of disk required for process.
-        
+
         :param name: Name of the Operating System.
         """
         OS_FILES = {
@@ -172,12 +173,12 @@ class Operating_System():
     @property
     def target_disk(self) -> str:
         return self._target_disk
-    
+
     @target_disk.setter
     def target_disk(self, target_disk: str) -> None:
         """
         Sets the target disk.
-        
+
         :param target_disk: Name of the target disk.
         :type target_disk: str
         """
@@ -186,17 +187,17 @@ class Operating_System():
     @property
     def disk_partitions(self) -> dict:
         return self._disk_partitions
-        
+
     @disk_partitions.setter
     def disk_partitions(self, partitions: dict) -> None:
         """
         Sets partitions with of the target disk.
-        
+
         :param partitions: Dictionary of all the newly created partition of target disk with corresponding labels.
         :type partitions: dict
         """
         self._disk_partitions: dict = partitions
-    
+
     def bootloader(self) -> None:
         """
         Applies bootloader to the partition of the target disk containing boot files.
@@ -207,7 +208,7 @@ class Operating_System():
 
         else: 
             subprocess.run(["sudo", "grub-install" ,"--target=i386-pc", f"--boot-directory=/mnt/{self._boot_partition}/boot", f"{self.target_disk}"])
-        
+
     def create(self) -> None:
         """
         This method calls all the required functions in sequence to perform the necessary operations to make the bootable media.
@@ -237,7 +238,7 @@ class Operating_System():
         print("[*] Cleaning unnecessary file...")
         for splitted_image_file in glob.glob(f"{download_dir}{image_name}.*"):
             os.remove(splitted_image_file)
-        
+
         # Applying bootloader
         self.bootloader()
 
@@ -247,14 +248,14 @@ def get_disk_details() -> str:
     """
     Executes the 'lsblk' command to retrieve detailed information for physical
     block disks using JSON output for robust, programmatic parsing.
-    
+
     :return: A string of target device.
     :rtype: str
     """
 
     LSBLK_CMD = ['lsblk', '-d','-J', '-o', 'NAME,SIZE,VENDOR,MODEL,RM']
 
-   
+
     # Execute the command, capture output, and ensure success
     result = subprocess.run(
         LSBLK_CMD, 
@@ -262,12 +263,12 @@ def get_disk_details() -> str:
         text=True,
         check=True
     )
-    
+
     # Parse the JSON output into a Python dictionary
     data = json.loads(result.stdout)
-    
+
     # Extract and filter the block disks
-    
+
 
     disks = [
                 [
@@ -278,14 +279,14 @@ def get_disk_details() -> str:
                 ]
                 for disk in data.get('blockdevices', []) if disk.get('rm', 'N/A') == True
             ]
-    
+
     if not disks:
         sys.exit("No USB/removable media found.")
     headers = [header.capitalize() for header in data.get("blockdevices")[0].keys()]
     headers[2] = "Interface" # Renaming Vendor column to Interface
     print(tabulate(disks, headers=headers, tablefmt="grid"))
 
-    
+
     return f"/dev/{input("Enter disk: ")}"
 
 def format_disk(disk: str, bios_type: str, size: int) -> str:
@@ -349,7 +350,7 @@ def format_disk(disk: str, bios_type: str, size: int) -> str:
 
             # Creating the filesystems
             print(f"\n[*] Creating filesystems ...")
-               
+
             subprocess.run(["sudo", "mkfs.ntfs", "-f", files_partition, "-L", "COMET"], check=True)
             subprocess.run(["sudo", "parted", "-s", disk, "set", "1", "boot", "on"], check=True) 
 
@@ -357,7 +358,7 @@ def format_disk(disk: str, bios_type: str, size: int) -> str:
 
     except subprocess.CalledProcessError:
         sys.exit("[*] Something went wrong, please retry.")
-    
+
     if len(glob.glob(disk + "?")) == 2:
         return {"COMET_BOOT": boot_partition, "COMET_FILES": files_partition}
     else:
@@ -370,14 +371,15 @@ def unmount_usb(partitions: list) -> None:
     :param partitions: List of all the partitions in the target disk.
     :type partitions: list
     """
+
     for part in partitions:
         print(f"Unmounting: {part}")
-        result = subprocess.run(["sudo", "umount", "-f", part])
+        subprocess.run(["sudo", "umount", "-f", part])
         
 def mount_usb(partitions: dict) -> None:
     """
     Mounts all the newly created partitions of the target disk by format_disk function.
-    
+
     :param partitions: Dictionary of all the newly created partition of target disk with corresponding labels.
     :type partitions: dict
     """
@@ -391,7 +393,7 @@ def mount_usb(partitions: dict) -> None:
 def downloader(url: str, download_dir: str) -> None:
     """
     Downloads all the files from github release page of the corresponding operating system of the CometUSB organization.
-    
+
     :param url: Download URL of individual files.
     :type url: str
     :param download_dir: Download location of the given files.
@@ -415,7 +417,7 @@ def downloader(url: str, download_dir: str) -> None:
 def extractor(archive_path: str, extract_dir: str) -> None:
     """
     Extracts the compressed archive to given location.
-    
+
     :param archive_path: Complete path of the compressed archives.
     :type archive_path: str
     :param extract_dir: Extract folder for the corresponding archive.
@@ -433,6 +435,7 @@ def extractor(archive_path: str, extract_dir: str) -> None:
 
             archive.extract(file_info, path = extract_dir)
             progress.update(file_info.file_size)
+
 
 if __name__ == "__main__":
     main()
