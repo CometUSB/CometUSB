@@ -513,9 +513,10 @@
 <p><code>sudo cometusb --operating-system &lt;OS_Name&gt; --bios-type &lt;BIOS_TYPE&gt;</code></p>
 <p><em>e.g, <code>sudo cometusb -o linuxmint -b uefi</code></em></p>
 <p>If using virtual environment (venv), use <code>sudo su</code> like below.
-<div class="highlight"><pre><span></span><code><span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span>thesniper@thesniperpc:~$<span class="w"> </span>sudo<span class="w"> </span>su
-<span class="o">[</span>sudo<span class="o">]</span><span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>thesniper:<span class="w">     </span>
-root@thesniperpc:/home/thesniper<span class="w"> </span>cometusb<span class="w"> </span>-o<span class="w"> </span>linuxmint<span class="w"> </span>-b<span class="w"> </span>uefi
+<div class="highlight"><pre><span></span><code>thesniper@thesniperpc:~$<span class="w"> </span>sudo<span class="w"> </span>su
+<span class="o">[</span>sudo<span class="o">]</span><span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>thesniper:<span class="w">   </span>
+root@thesniperpc:/home/thesniper<span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w"> </span><span class="c1"># Give your virtual environemnt path if different. </span>
+<span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span>root@thesniperpc:/home/thesniper<span class="w"> </span>cometusb<span class="w"> </span>-o<span class="w"> </span>linuxmint<span class="w"> </span>-b<span class="w"> </span>uefi
 </code></pre></div></p>
 <p><em>Type <code>cometusb -h</code> or <code>cometusb --help</code> to see the usage</em></p>
 <p><em>Type <code>cometusb --list-os</code> or <code>cometusb -l</code> to see the list of available Operating System</em></p>
