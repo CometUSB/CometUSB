@@ -17,9 +17,19 @@ The most straightforward way to install CometUSB is using `pip`:
 ```bash
 pip install cometusb
 or
-# Using python -m pip (recommended for virtual environments)
+pipx install cometusb
+or
 python -m pip install cometusb
 or
 python3 -m pip install cometusb
 ```
+_If above command does not work, use virtual environment approach given below._
+
+**With virtual environment (venv).**
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install cometusb
+```
+
 _If none of the above commands work, find out how to install python package in your system._

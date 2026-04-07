@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cometusb"
-version = "1.0"
+version = "1.1"
 description = "Create Linux bootable USB from CLI"
 readme = "README.md"
 authors = [

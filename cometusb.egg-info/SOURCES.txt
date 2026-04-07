@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+cometusb/__init__.py
+cometusb/cometusb.py
+cometusb.egg-info/PKG-INFO
+cometusb.egg-info/SOURCES.txt
+cometusb.egg-info/dependency_links.txt
+cometusb.egg-info/entry_points.txt
+cometusb.egg-info/requires.txt
+cometusb.egg-info/top_level.txt

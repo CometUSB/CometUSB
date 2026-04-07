@@ -34,9 +34,8 @@ def main() -> None:
 
     # Shows list of available Operating Systems.
     if args.list_os:
-        all_os = list(OS.keys())
-        for number in range(len(all_os)):
-            print(number + 1, all_os[number].capitalize(), sep=". ")
+        for number in range(len(OS)):
+            print(number + 1, OS[number].capitalize(), sep=". ")
         sys.exit() # Exits after showing the OS list
 
     if not (args.operating_system and args.bios_type):
@@ -67,7 +66,7 @@ class Operating_System():
         self._architecture= "64 Bit"
 
     def __str__(self) -> str:
-        return f"\nOS = {self.name.capitalize()}\nArchitecture = {self._architecture}\nTarget System BIOS Type = {self.bios_type.upper()}\nTarget Device = {self._target_disk}\nPartition Style = {self.partition_style.upper()}\nFiles to be Downloaded = {list(self.files)}\n"
+        return f"\nOS = {self.name.capitalize()}\nArchitecture = {self._architecture}\nTarget System BIOS Type = {self.bios_type.upper()}\nTarget Device = {self._target_disk}\nPartition Style = {self.partition_style.upper()}\nFiles to be Downloaded = {[name for name in self.files]}\n"
 
     @property
     def name(self) -> str:
@@ -139,7 +138,7 @@ class Operating_System():
             self._boot_partition, self._files_partition = self._partitions.keys() # Labels of boot and files partitions.
 
         elif len(self._partitions) == 1:
-            self._files_partition: str = list(self._partitions.keys())[0] 
+            self._files_partition: str = [partition for partition in self._partitions.keys()][0] 
             self._boot_partition: str = self._files_partition
 
         self._files: dict = {} # This will have file name with it's path.
