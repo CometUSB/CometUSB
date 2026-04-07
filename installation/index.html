@@ -539,12 +539,19 @@
 <p>The most straightforward way to install CometUSB is using <code>pip</code>:</p>
 <p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>cometusb
 or
-<span class="c1"># Using python -m pip (recommended for virtual environments)</span>
+pipx<span class="w"> </span>install<span class="w"> </span>cometusb
+or
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cometusb
 or
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>cometusb
 </code></pre></div>
-<em>If none of the above commands work, find out how to install python package in your system.</em></p>
+<em>If above command does not work, use virtual environment approach given below.</em></p>
+<p><strong>With virtual environment (venv).</strong>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>cometusb
+</code></pre></div></p>
+<p><em>If none of the above commands work, find out how to install python package in your system.</em></p>
 
 
 

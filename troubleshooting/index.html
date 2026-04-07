@@ -574,6 +574,11 @@
 <p><strong>Error:</strong> <code>PermissionError: [Errno 13] Permission denied</code> or general failures when accessing <code>/dev/sdX</code>.</p>
 <p><strong>Solution:</strong> CometUSB must manage disk devices, which requires root access. Always run the tool using <code>sudo</code>.</p>
 <p>e.g, <code>sudo cometusb -o linuxmint -b uefi</code></p>
+<p>or if using virtual environment (venv), use <code>sudo su</code> like below.</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>.venv<span class="o">)</span><span class="w"> </span>thesniper@thesniperpc:~$<span class="w"> </span>sudo<span class="w"> </span>su
+<span class="o">[</span>sudo<span class="o">]</span><span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>thesniper:<span class="w">     </span>
+root@thesniperpc:/home/thesniper<span class="w"> </span>cometusb<span class="w"> </span>-o<span class="w"> </span>linuxmint<span class="w"> </span>-b<span class="w"> </span>uefi
+</code></pre></div>
 <h3 id="2-active-internet-connection">2. Active Internet Connection<a class="headerlink" href="#2-active-internet-connection" title="Permanent link">&para;</a></h3>
 <p>This tool downloads the installation files from the github release. Make
 sure you have a working and stable connection.</p>
